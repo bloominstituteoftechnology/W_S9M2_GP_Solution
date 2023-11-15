@@ -17,9 +17,9 @@ export default function Todos() {
   }
 
   const memoTodos = useMemo(() => {
-    console.log('ugh, extremely slow filtering...')
+    console.log('ugh, filtering todos is expensive')
     return todos.filter(td => showAll || !td.completed)
-  }, [showAll])
+  }, [todos, showAll])
 
   return (
     <div className="widget">

@@ -2,19 +2,19 @@ import React, { useEffect, useRef, useState } from 'react'
 
 export default function Timeout({ timeoutSeconds = 3 }) {
   const [isVisible, setIsVisible] = useState(true)
-  const loadTimeRef = useRef(Date.now())
+  const secondsRef = useRef()
 
   useEffect(() => {
-    // loadTimeRef.current = Date.now()
-    console.log('Timeout mounted!')
-    return () => console.log('Timeout about to unmount...')
+    secondsRef.current = 0
+    const id = setInterval(() => {
+      secondsRef.current++
+    }, 1000)
+    return () => clearInterval(id)
   }, [])
 
   const handleClick = () => {
-    const currentTime = Date.now()
-    const elapsedTime = (currentTime - loadTimeRef.current) / 1000
-
-    if (elapsedTime > timeoutSeconds) setIsVisible(false)
+    console.log(secondsRef.current)
+    if (secondsRef.current >= timeoutSeconds) setIsVisible(false)
   }
 
   return (
