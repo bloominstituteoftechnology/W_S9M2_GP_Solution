@@ -29,5 +29,5 @@ app.use((req, res) => {
 const server = https.createServer(options, app)
 
 server.listen(PORT, () => {
-  console.log(`Navigate your browser to https://localhost:${PORT}`)
+  console.log(`server listening on port:${PORT}`)
 })
